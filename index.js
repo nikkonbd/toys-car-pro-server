@@ -55,10 +55,18 @@ async function run() {
             res.send(result);
         })
 
-        app.get('/allPost', async (req, res) => {
-            const result = await addToCarCollection.find({}).toArray();
-            res.send(result);
+        // app.get('/allPost', async (req, res) => {
+        //     const result = await addToCarCollection.find({}).toArray();
+        //     res.send(result);
+        // }),
 
+        app.get('/allPost', async (req, res) => {
+            let query = {};
+            if (req.query?.email) {
+                query = { email: req.query.email }
+            }
+            const result = await addToCarCollection.find(query).toArray();
+            res.send(result);
         })
 
         // Send a ping to confirm a successful connection

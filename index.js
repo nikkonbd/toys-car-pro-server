@@ -55,17 +55,20 @@ async function run() {
             res.send(result);
         })
 
-        // app.get('/allPost', async (req, res) => {
-        //     const result = await addToCarCollection.find({}).toArray();
-        //     res.send(result);
-        // }),
-
-        app.get('/allPost', async (req, res) => {
+        app.get('/addToCar', async (req, res) => {
             let query = {};
             if (req.query?.email) {
                 query = { email: req.query.email }
             }
             const result = await addToCarCollection.find(query).toArray();
+            res.send(result);
+        })
+
+        app.delete('/addToCar/:id', async (req, res) => {
+            const id = req.params.id;
+            console.log(id);
+            const query = { _id: new ObjectId(id) };
+            const result = await addToCarCollection.deleteOne(query);
             res.send(result);
         })
 

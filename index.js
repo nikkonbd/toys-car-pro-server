@@ -63,6 +63,7 @@ async function run() {
             res.send(result);
         })
 
+        // Delete addToCar
         app.delete('/addToCar/:id', async (req, res) => {
             const id = req.params.id;
             console.log(id);
